@@ -1,5 +1,5 @@
 // Add ARRAYS name / price / occupation
-const names = ["Alice", "Bob", "Carol", "Rob", "Leia","Mich", "John","Alie"];
+const names = ["Alice", "Bob", "Carol", "Rob", "Leia"];
 const occupations = ["Writer", "Teacher", "Programmer", "Driver"]
 const maxFreelancers = 8;
 const freelancers = [
@@ -16,7 +16,8 @@ const freelancers = [
 
 // setInterval to call addFreelancer every 3 seconds.
   const addFreelancerIntervalId = setInterval(addRandFreelancer, 3000);
-
+  
+  
   render(); 
 
   function render() { 
@@ -41,7 +42,7 @@ const freelancers = [
   
     // render average-price
     const averageStartPrice = calculateAverageStartPrice();
-    document.getElementById("average-price").textContent = `$${averageStartPrice}`;
+    document.getElementById("average-price").textContent = `$${averageStartPrice.toFixed(2)}`;
 
   }
 
