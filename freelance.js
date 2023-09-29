@@ -1,6 +1,6 @@
 // Add ARRAYS name / price / occupation
 const names = ["Alice", "Bob", "Carol", "Rob", "Leia","Mich", "John","Alie"];
-const occupation = ["Writer", "Teacher", "Programmer", "Driver"]
+const occupations = ["Writer", "Teacher", "Programmer", "Driver"]
 const maxFreelancers = 8;
 const freelancers = [
     { 
@@ -15,7 +15,7 @@ const freelancers = [
   ];
 
 // setInterval to call addFreelancer every 3 seconds.
-  const addFreelancerIntervalId = setInterval(addFreelancer, 3000);
+  const addFreelancerIntervalId = setInterval(addRandFreelancer, 3000);
 
   render(); 
 
@@ -41,7 +41,7 @@ const freelancers = [
   
     // render average-price
     const averageStartPrice = calculateAverageStartPrice();
-    document.getElementById("average-price").textContent = `$${freelancer.startPrice}`;
+    document.getElementById("average-price").textContent = `$${averageStartPrice}`;
 
   }
 
@@ -50,11 +50,30 @@ const freelancers = [
 
     for(let i = 0; i < freelancers.length; i++) {
         totalStartPrice += freelancers[i].startPrice;
+
     }
+
     const averageStartPrice = totalStartPrice / freelancers.length;
     return averageStartPrice
 
   }
 
+  function addRandFreelancer() {
+    const randName = names[Math.floor(Math.random() * names.length)];
+    const randOccupation = occupations[Math.floor(Math.random() * occupations.length)];
+    const randStartPrice = [Math.floor(Math.random() * 41) + 30]; // random price 30 to 70
 
+    const newFreelancer = {
+        name: randName,
+        occupation: randOccupation,
+        startPrice: randStartPrice
 
+    }
+    freelancers.push(newFreelancer);
+    
+    if (freelancers.length >= maxFreelancers) {
+        clearInterval(addFreelancerIntervalId);
+    }
+
+    render();
+  }
